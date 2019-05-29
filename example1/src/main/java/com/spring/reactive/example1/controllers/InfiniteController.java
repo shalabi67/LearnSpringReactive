@@ -9,13 +9,12 @@ import reactor.core.publisher.Flux;
 import java.time.Duration;
 
 @RestController
-@RequestMapping("/first")
-public class FirstController {
+@RequestMapping("/infinite")
+public class InfiniteController {
 
     @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
-    public Flux<Integer> getNumbers() {
-        return Flux.range(1, 20)
-                .delayElements(Duration.ofSeconds(1))
+    public Flux<Long> getInfiniteNumbers() {
+        return Flux.interval(Duration.ofMillis(100))
                 .log();
     }
 }
