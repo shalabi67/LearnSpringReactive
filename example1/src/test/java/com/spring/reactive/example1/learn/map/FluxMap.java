@@ -22,6 +22,7 @@ public class FluxMap {
         namesLength
                 .subscribe(System.out::println);
     }
+
     @Test
     public void getUpperCaseNames() {
         System.out.println("get names length");

@@ -8,17 +8,21 @@
         <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.spring.reactive</groupId>
-    <artifactId>example1</artifactId>
+    <groupId>com.learn</groupId>
+    <artifactId>example2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>example1</name>
-    <description>Spring boot example with web reactive, webflux flux mono.</description>
+    <name>example2</name>
+    <description>Spring boot example with web reactive, mongo reactive and emmbeded mongo.</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -32,6 +36,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

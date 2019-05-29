@@ -20,7 +20,7 @@ public class example {
                 .concatWithValues("you should  see me", "and me", "and me too")
                 .log();
         names.subscribe(System.out::println,
-                (e)-> System.out.println(e.getMessage()),
+                (e) -> System.out.println(e.getMessage()),
                 () -> System.out.println("completed"));
     }
 
@@ -34,7 +34,7 @@ public class example {
                 .concatWithValues("you should not see me", "or me", "or me too")
                 .log();
         names.subscribe(System.out::println,
-                (e)-> System.out.println(e.getMessage()),
+                (e) -> System.out.println(e.getMessage()),
                 () -> System.out.println("completed"));
     }
 }

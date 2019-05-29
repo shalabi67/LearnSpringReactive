@@ -18,6 +18,6 @@ public class MonoExamples {
                 .log();
 
         nameMono.subscribe(System.out::println,
-                (e)->System.out.println(e));
+                (e) -> System.out.println(e));
     }
 }

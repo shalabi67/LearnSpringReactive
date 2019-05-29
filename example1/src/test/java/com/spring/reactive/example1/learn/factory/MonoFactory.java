@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 import java.util.function.Supplier;
 
 public class MonoFactory {
-    private String name ="Mohammad";
+    private String name = "Mohammad";
     private static int counter = 0;
 
     @Test
@@ -46,12 +46,12 @@ public class MonoFactory {
 
         Supplier<String> nameSupplier = () -> {
             counter++;
-            return counter%2 == 0 ? name : null;
+            return counter % 2 == 0 ? name : null;
         };
 
         monoPublisher = Mono.fromSupplier(nameSupplier);
 
-        for(int i=0;i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             System.out.println("###################  Next call ######################");
             monoPublisher
                     .log()

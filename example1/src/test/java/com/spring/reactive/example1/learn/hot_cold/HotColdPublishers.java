@@ -13,7 +13,7 @@ public class HotColdPublishers {
     private List<String> names = Arrays.asList(namesArray);
     Flux<String> namesPublisher = Flux.fromIterable(names)
             .delayElements(Duration.ofSeconds(1L));
-            //.log();
+    //.log();
 
     @Test
     public void coldPublisher() throws InterruptedException {

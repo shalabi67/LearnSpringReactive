@@ -17,7 +17,7 @@ public class RouterConfiguration {
     RouterFunction<ServerResponse> numbersRout(FirstHandler firstHandler) {
         return RouterFunctions
                 .route(
-                    GET("/numbers").and(accept(MediaType.APPLICATION_JSON)),
+                        GET("/numbers").and(accept(MediaType.APPLICATION_JSON)),
                         firstHandler::getNumbers
                 )
                 .andRoute(GET("/high").and(accept(MediaType.APPLICATION_STREAM_JSON)),

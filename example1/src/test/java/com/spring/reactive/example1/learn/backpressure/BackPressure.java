@@ -62,7 +62,7 @@ public class BackPressure {
             @Override
             protected void hookOnNext(Object value) {
                 super.hookOnNext(value);
-                if(value == "Nada") {
+                if (value == "Nada") {
                     cancel();
                     return;
                 }

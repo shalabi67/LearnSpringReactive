@@ -5,9 +5,9 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 public class ExampleUnitTest {
-    private static final String firstName="Mohammad";
-    private static final String secondName="Elham";
-    private static final String ERROR="Error";
+    private static final String firstName = "Mohammad";
+    private static final String secondName = "Elham";
+    private static final String ERROR = "Error";
 
 
     @Test
@@ -19,6 +19,7 @@ public class ExampleUnitTest {
                 .expectNext(secondName)
                 .verifyComplete();
     }
+
     @Test
     public void testCount() {
         Flux<String> namesProvider = Flux.just(firstName, secondName);
@@ -27,6 +28,7 @@ public class ExampleUnitTest {
                 .expectNextCount(2)
                 .verifyComplete();
     }
+
     @Test
     public void testOnError() {
         Flux<String> namesProvider = Flux.just(firstName, secondName)

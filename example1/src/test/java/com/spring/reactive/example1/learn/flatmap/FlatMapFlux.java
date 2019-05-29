@@ -25,6 +25,6 @@ public class FlatMapFlux {
     }
 
     private Flux<String> createNewFlux(String name) {
-        return Flux.fromArray(new String[] {name, name.toUpperCase(), name.toLowerCase()});
+        return Flux.fromArray(new String[]{name, name.toUpperCase(), name.toLowerCase()});
     }
 }
