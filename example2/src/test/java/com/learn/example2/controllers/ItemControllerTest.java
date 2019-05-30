@@ -101,6 +101,8 @@ public class ItemControllerTest {
                 //.expectNextCount(1)
                 .verifyComplete();
     }
+
+    //notice this api has media type of APPLICATION_STREAM_JSON_VALUE not like the other apis
     @Test
     public void testAddItem2() {
         Item item = ItemFactory.create();
@@ -156,5 +158,53 @@ public class ItemControllerTest {
                 .exchange()
                 .expectStatus().isNotFound();
 
+    }
+
+    //notice this api has media type of APPLICATION_STREAM_JSON_VALUE not like the other apis
+    @Test
+    public void testUpdateExistingItem() {
+        Item item = ItemFactory.create();
+        webTestClient
+                .put().uri(ItemController.ITEMS_URL+ "/aaa")
+                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromObject(item))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Item.class)
+                .consumeWith(response -> {
+                    Item item1 =response.getResponseBody();
+                    Assert.assertEquals(item.getDescription(), item1.getDescription());
+                    Assert.assertEquals(item.getPrice(), item1.getPrice(), .001);
+                    Assert.assertEquals(item.getId(), item1.getId());
+                });
+    }
+    //notice this api has media type of APPLICATION_STREAM_JSON_VALUE not like the other apis
+    @Test
+    public void testUpdateExistingItem2() {
+        Item item = ItemFactory.create();
+        webTestClient
+                .put().uri(ItemController.ITEMS_URL+ "/aaa")
+                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromObject(item))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.id").isEqualTo(item.getId())
+                .jsonPath("$.description").isEqualTo(item.getDescription())
+                .jsonPath("$.price").isEqualTo(item.getPrice());
+    }
+
+    @Test
+    public void testUpdateNotFoundItem() {
+        Item item = ItemFactory.create();
+        webTestClient
+                .put().uri(ItemController.ITEMS_URL+ "/qwe")
+                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromObject(item))
+                .exchange()
+                .expectStatus().isNotFound();
     }
 }

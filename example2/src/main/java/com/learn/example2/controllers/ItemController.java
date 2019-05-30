@@ -42,4 +42,15 @@ public class ItemController {
                 .map(item -> new ResponseEntity<>(item, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @PutMapping(value="/{id}", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    public Mono<ResponseEntity<Item>> updateItem(@PathVariable String id, @RequestBody Item item) {
+        return itemRepository.findById(id)
+                .flatMap(existingItem -> {
+                    item.setId(id);
+                    return itemRepository.save(item);
+                })
+                .map(i -> new ResponseEntity<>(i, HttpStatus.OK))
+                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }
