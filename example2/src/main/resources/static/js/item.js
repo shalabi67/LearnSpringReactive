@@ -1,4 +1,4 @@
-function loadComments () {
+function loadComments() {
 
     this.source = null;
 
@@ -48,7 +48,7 @@ function loadComments () {
 
     };
 
-    this.stop = function() {
+    this.stop = function () {
         this.source.close();
     }
 
@@ -59,9 +59,9 @@ comment = new loadComments();
 /*
  * Register callbacks for starting and stopping the SSE controller.
  */
-window.onload = function() {
+window.onload = function () {
     comment.start();
 };
-window.onbeforeunload = function() {
+window.onbeforeunload = function () {
     comment.stop();
 }

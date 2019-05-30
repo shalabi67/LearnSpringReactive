@@ -52,7 +52,7 @@ public class ItemControllerTest {
 
     @Test
     public void testGetAllItems() {
-        Flux<Item> items =webTestClient
+        Flux<Item> items = webTestClient
                 .get().uri(ItemController.ITEMS_URL)
                 .accept(MediaType.TEXT_EVENT_STREAM)
                 .exchange()
@@ -65,6 +65,7 @@ public class ItemControllerTest {
                 .expectNextCount(10 + 3 + 1)
                 .verifyComplete();
     }
+
     @Test
     public void testGetAllItems2() {
         webTestClient
@@ -75,7 +76,7 @@ public class ItemControllerTest {
                 .expectBodyList(Item.class)
                 .consumeWith(response -> {
                     List<Item> items = response.getResponseBody();
-                    for(Item item : items) {
+                    for (Item item : items) {
                         Assert.assertNotNull(item.getId());
                     }
                 });
@@ -85,7 +86,7 @@ public class ItemControllerTest {
     @Test
     public void testAddItem() {
         Item item = ItemFactory.create();
-        Flux<Item> items =webTestClient
+        Flux<Item> items = webTestClient
                 .post().uri(ItemController.ITEMS_URL)
                 .accept(MediaType.APPLICATION_STREAM_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -115,7 +116,7 @@ public class ItemControllerTest {
                 .expectStatus().isCreated()
                 .expectBody(Item.class)
                 .consumeWith(response -> {
-                    Item item1 =response.getResponseBody();
+                    Item item1 = response.getResponseBody();
                     Assert.assertEquals(item.getDescription(), item1.getDescription());
                     Assert.assertEquals(item.getPrice(), item1.getPrice(), .001);
                     Assert.assertNotNull(item1.getId());
@@ -126,7 +127,8 @@ public class ItemControllerTest {
     @Test
     public void testGetExistingItem() {
         ParameterizedTypeReference<ResponseEntity<Item>> typeRef =
-                new ParameterizedTypeReference<ResponseEntity<Item>>() {};
+                new ParameterizedTypeReference<ResponseEntity<Item>>() {
+                };
         webTestClient
                 .get().uri(ItemController.ITEMS_URL + "/aaa")
                 .accept(MediaType.TEXT_EVENT_STREAM)
@@ -141,15 +143,16 @@ public class ItemControllerTest {
                         Assert.assertEquals("aaa", item.getId());
                         Assert.assertEquals(99.59, item.getPrice(), .001);
                     } catch (IOException e) {
-                       Assert.fail();
+                        Assert.fail();
                     }
 
                 });
 
-                //.jsonPath("$.id").isEqualTo("aaa")
-                //.jsonPath("$.price").isEqualTo(99.59);
+        //.jsonPath("$.id").isEqualTo("aaa")
+        //.jsonPath("$.price").isEqualTo(99.59);
 
     }
+
     @Test
     public void testGetNotFoundItem() {
         webTestClient
@@ -165,7 +168,7 @@ public class ItemControllerTest {
     public void testUpdateExistingItem() {
         Item item = ItemFactory.create();
         webTestClient
-                .put().uri(ItemController.ITEMS_URL+ "/aaa")
+                .put().uri(ItemController.ITEMS_URL + "/aaa")
                 .accept(MediaType.APPLICATION_STREAM_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(item))
@@ -173,18 +176,19 @@ public class ItemControllerTest {
                 .expectStatus().isOk()
                 .expectBody(Item.class)
                 .consumeWith(response -> {
-                    Item item1 =response.getResponseBody();
+                    Item item1 = response.getResponseBody();
                     Assert.assertEquals(item.getDescription(), item1.getDescription());
                     Assert.assertEquals(item.getPrice(), item1.getPrice(), .001);
                     Assert.assertEquals(item.getId(), item1.getId());
                 });
     }
+
     //notice this api has media type of APPLICATION_STREAM_JSON_VALUE not like the other apis
     @Test
     public void testUpdateExistingItem2() {
         Item item = ItemFactory.create();
         webTestClient
-                .put().uri(ItemController.ITEMS_URL+ "/aaa")
+                .put().uri(ItemController.ITEMS_URL + "/aaa")
                 .accept(MediaType.APPLICATION_STREAM_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(item))
@@ -200,7 +204,7 @@ public class ItemControllerTest {
     public void testUpdateNotFoundItem() {
         Item item = ItemFactory.create();
         webTestClient
-                .put().uri(ItemController.ITEMS_URL+ "/qwe")
+                .put().uri(ItemController.ITEMS_URL + "/qwe")
                 .accept(MediaType.APPLICATION_STREAM_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromObject(item))

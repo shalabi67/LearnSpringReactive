@@ -20,9 +20,10 @@ public class FirstController {
                 .delayElements(Duration.ofSeconds(1))
                 .log();
     }
-    @GetMapping(value="/error", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+
+    @GetMapping(value = "/error", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Integer> getNumbersWithError() {
-        Flux<Integer> flux =  Flux.range(1, 5)
+        Flux<Integer> flux = Flux.range(1, 5)
                 .delayElements(Duration.ofSeconds(1))
                 .log();
 

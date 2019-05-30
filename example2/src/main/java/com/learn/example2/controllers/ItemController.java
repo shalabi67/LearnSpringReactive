@@ -36,14 +36,14 @@ public class ItemController {
         return itemRepository.save(item);
     }
 
-    @GetMapping(value="/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Mono<ResponseEntity<Item>> getItem(@PathVariable String id) {
         return itemRepository.findById(id)
                 .map(item -> new ResponseEntity<>(item, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping(value="/{id}", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Mono<ResponseEntity<Item>> updateItem(@PathVariable String id, @RequestBody Item item) {
         return itemRepository.findById(id)
                 .flatMap(existingItem -> {

@@ -12,5 +12,6 @@
     <modules>
         <module>example1</module>
         <module>example2</module>
+        <module>functional_web</module>
     </modules>
 </project>
