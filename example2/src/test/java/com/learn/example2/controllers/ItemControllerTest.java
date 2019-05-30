@@ -46,7 +46,7 @@ public class ItemControllerTest {
     public void testGetAllItems() {
         Flux<Item> items =webTestClient
                 .get().uri(ItemController.ITEMS_URL)
-                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .accept(MediaType.TEXT_EVENT_STREAM)
                 .exchange()
                 .expectStatus().isOk()
                 .returnResult(Item.class)

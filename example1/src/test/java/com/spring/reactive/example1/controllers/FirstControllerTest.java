@@ -25,7 +25,7 @@ public class FirstControllerTest {
         Flux<Integer> numberPublisher = webTestClient
                 .get()
                 .uri(URL)
-                .accept(MediaType.APPLICATION_STREAM_JSON)
+                .accept(MediaType.TEXT_EVENT_STREAM)
                 .exchange()
                 .expectStatus().isOk()
                 .returnResult(Integer.class)
