@@ -22,7 +22,7 @@ public class ItemController {
         this.itemRepository = itemRepository;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Item> getItems() {
         return itemRepository.findAll();
     }
