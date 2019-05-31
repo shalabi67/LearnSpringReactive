@@ -1,5 +1,6 @@
 package com.learn.example2;
 
+/*
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,3 +15,4 @@ public class Example2ApplicationTests {
     }
 
 }
+*/
