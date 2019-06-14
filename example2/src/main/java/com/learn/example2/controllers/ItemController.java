@@ -53,4 +53,21 @@ public class ItemController {
                 .map(i -> new ResponseEntity<>(i, HttpStatus.OK))
                 .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @GetMapping(value = "/exception", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Item> getItemsWithException() {
+        return itemRepository.findAll()
+                .concatWith(Mono.error(new RuntimeException("simulate an exception and see what will happen.")));
+    }
+
+
+    /*
+    //this had been moved to exception handler controller
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleException(RuntimeException ex) {
+        log.error("got an exception " + ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+    }
+    */
+
 }

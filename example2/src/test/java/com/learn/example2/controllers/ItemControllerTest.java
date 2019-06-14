@@ -211,4 +211,17 @@ public class ItemControllerTest {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    /*
+    @Test
+    public void testGetAllItemsWithException() {
+        webTestClient
+                .get().uri(ItemController.ITEMS_URL + "/exception")
+                .accept(MediaType.TEXT_EVENT_STREAM)
+                .exchange()
+                //.expectStatus().is5xxServerError()
+                .expectBody(String.class)
+                .isEqualTo("simulate an exception and see what will happen.");
+    }
+    */
 }

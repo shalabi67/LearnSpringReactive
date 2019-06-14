@@ -9,3 +9,7 @@ brew install mongodb
 ```
 brew services restart mongodb
 ```
+
+
+##Exceptions with flux
+https://blog.softwaremill.com/spring-webflux-and-domain-exceptions-10ae2096b159
